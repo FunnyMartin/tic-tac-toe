@@ -21,7 +21,6 @@ public class Board {
     }
 
     public void play(Scanner scan){
-        //check na konec hry
         int x, y;
         if(player1){
             while(true){
@@ -46,7 +45,6 @@ public class Board {
             }
             player1 = false;
         } else{
-            //grafika zobrazi pole
             while(true){
                 //grafika zobrazi pole
                 System.out.println("Choose field: x");
@@ -92,6 +90,57 @@ public class Board {
             }
         }
         return false;
+    }
+
+    //0 = null, 1 = X, 2 = O
+    public boolean checkEnding(){
+        boolean win = false;
+        ArrayList<Integer> array = new ArrayList<>();
+        for (int i = 0; i < boardSize*boardSize; i++){
+            if(board.get(i).getMark().equals(Mark.X)){
+                array.add(1);
+            } else if(board.get(i).getMark().equals(Mark.O)){
+                array.add(2);
+            } else{
+                array.add(0);
+            }
+        }
+
+        if(array.get(0) == 1 && array.get(1) == 1 && array.get(2) == 1){
+            win = true;
+        } else if(array.get(3) == 1 && array.get(4) == 1 && array.get(5) == 1){
+            win = true;
+        } else if(array.get(6) == 1 && array.get(7) == 1 && array.get(8) == 1){
+            win = true;
+        } else if(array.get(0) == 1 && array.get(3) == 1 && array.get(6) == 1){
+            win = true;
+        } else if(array.get(1) == 1 && array.get(4) == 1 && array.get(7) == 1){
+            win = true;
+        } else if(array.get(2) == 1 && array.get(5) == 1 && array.get(8) == 1){
+            win = true;
+        } else if(array.get(0) == 1 && array.get(4) == 1 && array.get(8) == 1){
+            win = true;
+        } else if(array.get(2) == 1 && array.get(4) == 1 && array.get(6) == 1){
+            win = true;
+        } else if(array.get(0) == 2 && array.get(1) == 2 && array.get(2) == 2){
+            win = true;
+        } else if(array.get(3) == 2 && array.get(4) == 2 && array.get(5) == 2){
+            win = true;
+        } else if(array.get(6) == 2 && array.get(7) == 2 && array.get(8) == 2){
+            win = true;
+        } else if(array.get(0) == 2 && array.get(3) == 2 && array.get(6) == 2){
+            win = true;
+        } else if(array.get(1) == 2 && array.get(4) == 2 && array.get(7) == 2){
+            win = true;
+        } else if(array.get(2) == 2 && array.get(5) == 2 && array.get(8) == 2){
+            win = true;
+        } else if(array.get(0) == 2 && array.get(4) == 2 && array.get(8) == 2){
+            win = true;
+        } else if(array.get(2) == 2 && array.get(4) == 2 && array.get(6) == 2){
+            win = true;
+        }
+
+        return win;
     }
 
 }
