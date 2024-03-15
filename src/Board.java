@@ -19,11 +19,32 @@ public class Board {
             }
         }
     }
+    public void draw(){
+        String completeBoard="";
+        for (int i = 0; i < boardSize; i++){
+            String rowDrawer ="\n" + " " + "|" + " " + "|" +" ";
+            completeBoard=completeBoard+rowDrawer+"\n"+"______";
+        }
+        System.out.println(completeBoard);
+    }
+
+
+    public void refresh(){
+        String completeBoard="";
+        for (int i = 0; i < boardSize; i++){
+            completeBoard=completeBoard+"\n"+"---------------"+"\n"+" | ";
+            for (int j = 0; j < boardSize; j++){
+                completeBoard=completeBoard+board.get(j).getX()+" | ";
+            }
+        }
+        System.out.println(completeBoard);
+    }
 
     public void play(Scanner scan){
         int x, y;
         if(player1){
             while(true){
+                refresh();
                 //grafika zobrazi pole
                 System.out.println("Choose field: x");
                 x = scan.nextInt();
@@ -46,6 +67,7 @@ public class Board {
             player1 = false;
         } else{
             while(true){
+                refresh();
                 //grafika zobrazi pole
                 System.out.println("Choose field: x");
                 x = scan.nextInt();
@@ -82,7 +104,7 @@ public class Board {
 
         for(int i = 0; i < board.size(); i++){
             if (board.get(i).getX() == numberX && board.get(i).getY() == numberY){
-                if(board.get(i).getMark().equals(Mark.O) || board.get(i).getMark().equals(Mark.X)){
+                if(board.get(i).getMark() == Mark.O || board.get(i).getMark() == Mark.X){
                     return false;
                 } else{
                     return true;
@@ -97,12 +119,12 @@ public class Board {
         boolean win = false;
         ArrayList<Integer> array = new ArrayList<>();
         for (int i = 0; i < boardSize*boardSize; i++){
-            if(board.get(i).getMark().equals(Mark.X)){
+            if(board.get(i).getMark()==(null)){
+                array.add(0);
+            } else if(board.get(i).getMark().equals(Mark.X)){
                 array.add(1);
             } else if(board.get(i).getMark().equals(Mark.O)){
                 array.add(2);
-            } else{
-                array.add(0);
             }
         }
 
